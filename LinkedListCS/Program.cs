@@ -14,8 +14,8 @@ namespace LinkedListCS
             list.Add(1);
             list.Add(2);
             list.Add(3);
-
             list.Print();
+            
             Console.ReadKey();
 
 
@@ -23,16 +23,28 @@ namespace LinkedListCS
     }
     class Node <ITEM>
     {
-        public ITEM data;
-        public Node<ITEM> next;
+        private ITEM data;
+        private Node<ITEM> next;
+
+        public ITEM Data
+        {
+            get;
+            set;
+        }
+        public Node<ITEM> Next
+        {
+            get;
+            set;
+        }
+
         public Node(ITEM data)
         {
-            this.data = data;
+            Data = data;
         }
     }
     class ListNode<T>
     {
-        public Node<T> first;
+        private Node<T> first;
         public ListNode()
         {
             first = null;
@@ -47,12 +59,29 @@ namespace LinkedListCS
             else
             {
                 Node<T> current = first;
-                while (current.next != null)
+                while (current.Next != null)
                 {
-                    current = current.next;
+                    current = current.Next;
                 }
-                current.next = node;
+                current.Next = node;
             }
+        }
+
+        /// <summary>
+        /// Удалить первый элемент списка
+        /// </summary>
+        public void RemoveBegin()
+        {
+            Node<T> current = first;
+            first = first.Next;
+        }
+
+        /// <summary>
+        /// Удалить список
+        /// </summary>
+        public void Del()
+        {
+            first=null;
         }
         public void Print()
         {
@@ -60,8 +89,8 @@ namespace LinkedListCS
 
             while (current != null)
             {
-                Console.WriteLine(current.data);
-                current = current.next; // переход к следующему узлу
+                Console.WriteLine(current.Data);
+                current = current.Next; // переход к следующему узлу
             }
         }
     }
