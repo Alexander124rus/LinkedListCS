@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,8 +13,10 @@ namespace LinkedListCS
             ListNode<string> list = new ListNode<string>();
             list.Add("a");
             list.Add("b");
+            list.Add("b");
             list.Add("c");
-            
+            list.Add("c");
+
             list.Print();
 
             list.RemoveElement("c");
@@ -101,19 +103,46 @@ namespace LinkedListCS
         {
             Node<T> previous = null;
             Node<T> current = first;
-            if (first.Data.Equals(obj))
-            {
-                first = first.Next;
-            }
-            else
-            {
-                previous.Next = current.Next;
 
-                // Если это был последний элемент списка, 
-                // то изменяем указатель на крайний элемент списка.
-                if (current.Next == null)
+            while (current != null)
+            {
+                if (current == null)
+                    {
+                        Console.WriteLine("последний элемент");
+                    }
+                if (current.Data.Equals(obj))
                 {
-                    current = previous;
+
+                    if (current == first)
+                    {
+                        previous = first;
+                        first = first.Next;
+                        current = first;
+
+                    }
+                    else
+                    {
+                        //previous = first;
+
+                        //while (previous.Next != current)
+                        //{
+                        //    previous = previous.Next;
+                        //}
+                        //previous.Next = current.Next;
+                        //current = previous;
+
+
+
+                        previous.Next = current.Next;
+                        current = previous;
+
+                    }
+                    //break;
+                }
+                else
+                {
+                    previous = current;
+                    current = current.Next;
                 }
             }
         }
